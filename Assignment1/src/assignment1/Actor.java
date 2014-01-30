@@ -18,12 +18,12 @@ public class Actor {
 
 
     public final static double MAX_HEALTH = 100.0;
-    public final static double MIN_HEALTH = 0.0;
+    public final static double MIN_HEALTH = 1.0;
 
-    public final static double MIN_SPEED = 0.0;
     public final static double MAX_SPEED = 100.0;
+    public final static double MIN_SPEED = 1.0;
 
-    public final static double MAX_STRENGTH = 50.0;
+    public final static double MAX_STRENGTH = 100.0;
     public final static double MIN_STRENGTH = 1.0;
 
 
@@ -37,6 +37,7 @@ public class Actor {
 
     // Actor Constructor
     Actor() {
+        name = String.Format("%s%d", name, actorSerialNumber);
         name = ("Actor" + (actorSerialNumber++));
         strength = SingletonRandom.instance.getNormalDistribution(MIN_STRENGTH, MAX_STRENGTH, 0.1);
         speed = SingletonRandom.instance.getNormalDistribution(MIN_SPEED, MAX_SPEED, 0.1);
