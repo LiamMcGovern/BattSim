@@ -16,6 +16,7 @@ public class Actor {
      * @project: Assignment 1, Object Oriented Programming.
      */
 
+
     public final static double MAX_HEALTH = 100.0;
     public final static double MIN_HEALTH = 0.0;
 
@@ -37,19 +38,19 @@ public class Actor {
     // Actor Constructor
     Actor() {
         name = ("Actor" + (actorSerialNumber++));
-        strength = 0;
-        speed = 0;
-        health = 0;
-
+        strength = SingletonRandom.instance.getNormalDistribution(MIN_STRENGTH, MAX_STRENGTH, 0.1);
+        speed = SingletonRandom.instance.getNormalDistribution(MIN_SPEED, MAX_SPEED, 0.1);
+        health = SingletonRandom.instance.getNormalDistribution(MIN_HEALTH, MAX_HEALTH, 0.1);
     }
 
-
     //getter and setters for Actor Strength Attribute
-    public double getStrength() {
+    public double getStrength()
+    {
         return strength;
     }
 
-    public void setStrength(double strength) {
+    public void setStrength(double strength)
+    {
         this.strength = strength;
     }
 
