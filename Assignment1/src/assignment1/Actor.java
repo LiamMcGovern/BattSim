@@ -47,9 +47,9 @@ public class Actor {
     }
 
     public void inputAllFields(){
-        this.strength = setStrength(Input.instance.getDouble( (String.format("Input %s's Strength", this.name))));
-        this.speed = setSpeed(Input.instance.getDouble((String.format("Input %s's Speed", this.name))));
-        this.health = setHealth(Input.instance.getDouble((String.format("Input %s's Health", this.name))));
+        setStrength(Input.instance.getDouble( (String.format("Input %s's Strength", this.name))));
+        setSpeed(Input.instance.getDouble((String.format("Input %s's Speed", this.name))));
+        setHealth(Input.instance.getDouble((String.format("Input %s's Health", this.name))));
     }
 
     public String toString(){
