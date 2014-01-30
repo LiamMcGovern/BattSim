@@ -1,5 +1,5 @@
-package assignment1; // N.B.  Use of default package at this point in
-// the program would indicate a lack of knowledge on the part of the student!
+package assignment1;// N.B.  Use of default package at this point in
+                    // the program would indicate a lack of knowledge on the part of the student!
 
 public class Actor {
     /**
@@ -51,7 +51,7 @@ public class Actor {
 
     public void setStrength(double strength)
     {
-        this.strength = strength;
+        this.strength = Input.instance.getDouble("Input Actor Strength", MIN_HEALTH, MAX_HEALTH);
     }
 
 
@@ -61,7 +61,7 @@ public class Actor {
     }
 
     public void setSpeed(double speed) {
-        this.speed = speed;
+        this.speed = Input.instance.getDouble("Input Actor Speed", MIN_SPEED, MAX_SPEED);
     }
 
     //getter and setters for Actor's Health
@@ -69,7 +69,7 @@ public class Actor {
         return health;
     }
 
-    public void setHealth(double health) {
-        this.health = health;
+    public void setHealth() {
+        this.health = Input.instance.getDouble("Input actor Health, between" + MIN_HEALTH + " and " + MAX_HEALTH, MIN_HEALTH, MAX_HEALTH);
     }
 }
