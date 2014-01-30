@@ -44,15 +44,20 @@ public class Actor {
         health = SingletonRandom.instance.getNormalDistribution(MIN_HEALTH, MAX_HEALTH, 0.1);
     }
 
+    public void inputAllFields(){
+        this.strength = setStrength(Input.instance.getDouble( (String.format("Input %s's Strength", this.name))));
+        this.speed = setSpeed(Input.instance.getDouble((String.format("Input %s's Speed", this.name))));
+        this.health = setHealth(Input.instance.getDouble((String.format("Input %s's Health", this.name))));
+    }
+
     //getter and setters for Actor Strength Attribute
-    public double getStrength()
-    {
-        return strength;
+    public double getStrength(){
+        return this.strength;
     }
 
     public void setStrength(double strength)
     {
-        this.strength = Input.instance.getDouble("Input Actor Strength", MIN_HEALTH, MAX_HEALTH);
+        //
     }
 
 
