@@ -5,16 +5,14 @@ package assignment1;
  */
 public class ActorTest {
     public static void main(String[] args) {
-        int quantityOfActors = Input.instance.getInt("How many Actors should be made?", 0, 100);
+        int quantityOfActors = Input.instance.getInt("How many Actors should be made?");
 
-        Actor[] actors;
-        actors = new Actor[quantityOfActors];
+        Actor[] setOfActors;
+        setOfActors = new Actor[quantityOfActors];
 
         for (int i = 0; i < quantityOfActors; i++) {
-            actors[i] = new Actor();
+            setOfActors[i] = new Actor();
+            System.out.println(setOfActors[i]);
         }
-
-
-
     }
 }

@@ -1,5 +1,8 @@
 package assignment1;// N.B.  Use of default package at this point in
                     // the program would indicate a lack of knowledge on the part of the student!
+import java.util.Formatter;
+import java.lang.String;
+
 
 public class Actor {
     /**
@@ -30,15 +33,14 @@ public class Actor {
     public static int actorSerialNumber = 0; //Starts with 0, incresed everytime it's used.
 
     private String name;
-
     private double strength;
     private double speed;
     private double health;
 
     // Actor Constructor
     Actor() {
-        name = String.Format("%s%d", name, actorSerialNumber);
-        name = ("Actor" + (actorSerialNumber++));
+        actorSerialNumber++;
+        name = String.format("%s%d", name, actorSerialNumber);
         strength = SingletonRandom.instance.getNormalDistribution(MIN_STRENGTH, MAX_STRENGTH, 0.1);
         speed = SingletonRandom.instance.getNormalDistribution(MIN_SPEED, MAX_SPEED, 0.1);
         health = SingletonRandom.instance.getNormalDistribution(MIN_HEALTH, MAX_HEALTH, 0.1);
@@ -50,32 +52,58 @@ public class Actor {
         this.health = setHealth(Input.instance.getDouble((String.format("Input %s's Health", this.name))));
     }
 
+    public String toString(){
+        return String.format("Name:%-12s Strength:%4.1f Health:%4.1f", this.name, this.strength, this.health);
+    }
+
+
     //getter and setters for Actor Strength Attribute
+    //getter and setters for Actor Speed Attribute
+
+    //getter and setters for Actor's Health
+    public double getHealth() {
+        return this.health;
+    }
+
     public double getStrength(){
         return this.strength;
     }
 
-    public void setStrength(double strength)
-    {
-        //
-    }
-
-
-    //getter and setters for Actor Speed Attribute
     public double getSpeed() {
-        return speed;
+        return this.speed;
     }
 
     public void setSpeed(double speed) {
-        this.speed = Input.instance.getDouble("Input Actor Speed", MIN_SPEED, MAX_SPEED);
+        if (speed > MAX_SPEED){
+            this.speed = MAX_SPEED;
+        } else if (speed < MIN_SPEED){
+            this.speed = MIN_SPEED;
+        } else {
+            this.speed = speed;
+        }
     }
 
-    //getter and setters for Actor's Health
-    public double getHealth() {
-        return health;
+
+
+    public void setHealth(double health) {
+        if (health > MAX_HEALTH){
+            this.health = MAX_HEALTH;
+        } else if (health < MIN_HEALTH){
+            this.health = MIN_HEALTH;
+        } else {
+            this.health = health;
+        }
     }
 
-    public void setHealth() {
-        this.health = Input.instance.getDouble("Input actor Health, between" + MIN_HEALTH + " and " + MAX_HEALTH, MIN_HEALTH, MAX_HEALTH);
+    public void setStrength(double strength){
+        if (strength > MAX_STRENGTH){
+            this.strength = MAX_STRENGTH;
+        } else if (strength < MIN_STRENGTH){
+            this.strength = MIN_STRENGTH;
+        } else {
+            this.strength = strength;
+        }
     }
+
+
 }
