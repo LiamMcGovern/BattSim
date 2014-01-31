@@ -9,10 +9,23 @@ public class ActorTest {
 
         Actor[] setOfActors;
         setOfActors = new Actor[quantityOfActors];
+        System.out.println("Listing unmodified Actor attributes: ");
+
 
         for (int i = 0; i < quantityOfActors; i++) {
             setOfActors[i] = new Actor();
             System.out.println(setOfActors[i]);
         }
+
+
+        int index = Input.instance.getInt("Which attributes would you like to modify");
+        setOfActors[index].inputAllFields();
+
+
+        for (int i = 0; i < quantityOfActors; i++) {
+
+            System.out.println(setOfActors[i]);
+        }
+
     }
 }

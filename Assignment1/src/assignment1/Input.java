@@ -25,6 +25,7 @@ public final class Input {
      * @param prompt   reference to a <i>String</i> object whose contents will be displayed to the user as a prompt.
      * @return <i>double</i> value input from keyboard
      */
+
     public double getDouble(String prompt) throws NumberFormatException, RuntimeException {
         System.out.print(prompt);
         int numAttempts = 0;
