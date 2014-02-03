@@ -108,6 +108,7 @@ public class Actor {
     //Otherwise the selected field is set to the specified value.
 
     public void setSpeed(double speed) {
+        //If user input exceeds limit, set it to nearest limit
         if (speed > MAX_SPEED){
             System.out.printf("The entered Speed is greater than specified limits," +
                     " setting the value to defined max %.1f instead %n", MAX_SPEED);
@@ -117,11 +118,12 @@ public class Actor {
                     " setting the value to defined min %.1f instead %n", MIN_SPEED);
             this.speed = MIN_SPEED;
         } else {
-            this.speed = speed;
+            this.speed = speed; //If user input is valid set Attribute to that value.
         }
     }
 
     public void setHealth(double health) {
+        //If user input exceeds limit, set it to nearest limit
         if (health > MAX_HEALTH){
             System.out.printf("The entered Health value is greater than specified limits," +
                     " setting the value to defined max %.1f instead %n", MAX_HEALTH);
@@ -131,11 +133,12 @@ public class Actor {
                     " setting the value to defined min %.1f instead %n", MIN_HEALTH);
             this.health = MIN_HEALTH;
         } else {
-            this.health = health;
+            this.health = health;//If user input is valid set Attribute to that value.
         }
     }
 
     public void setStrength(double strength){
+        //If user input exceeds limit, set it to nearest limit
         if (strength > MAX_STRENGTH){
             System.out.printf("The entered Strength is greater than specified limits," +
                     " setting the value to defined max %.1f instead %n", MAX_STRENGTH);
@@ -145,7 +148,7 @@ public class Actor {
                     " setting the value to defined min %.1f instead %n", MIN_STRENGTH);
             this.strength = MIN_STRENGTH;
         } else {
-            this.strength = strength;
+            this.strength = strength;//If user input is valid set Attribute to that value.
         }
     }
     //-----Attribute set methods----------
