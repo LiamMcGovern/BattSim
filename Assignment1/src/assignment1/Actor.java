@@ -1,5 +1,7 @@
 package assignment1;// N.B.  Use of default package at this point in
                     // the program would indicate a lack of knowledge on the part of the student!
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 import java.util.Formatter;
 import java.lang.String;
 
@@ -35,6 +37,7 @@ public class Actor {
 
     //Actor instance variables
     private String name = "Actor"; //A string object initialized with the value of 'Actor'
+    private int actorId;
     private double strength;
     private double speed;
     private double health;
@@ -42,19 +45,22 @@ public class Actor {
     // Actor Constructor
     Actor() {
         actorSerialNumber++;//Increased upon each instantiation to correlate with the quantity of Actors created.
-        name = String.format("%s%d", name, actorSerialNumber);
+        actorId = actorSerialNumber;
+        name = String.format("%s%d", name, actorId);
         //Actor instance variables are automagically instantiated with random values between the defined limits.
-        strength = SingletonRandom.instance.getNormalDistribution(MIN_STRENGTH, MAX_STRENGTH, 1);
-        speed = SingletonRandom.instance.getNormalDistribution(MIN_SPEED, MAX_SPEED, 1);
-        health = SingletonRandom.instance.getNormalDistribution(MIN_HEALTH, MAX_HEALTH, 1);
+        strength = SingletonRandom.instance.getNormalDistribution(MIN_STRENGTH, MAX_STRENGTH, 3);
+        speed = SingletonRandom.instance.getNormalDistribution(MIN_SPEED, MAX_SPEED, 3);
+        health = SingletonRandom.instance.getNormalDistribution(MIN_HEALTH, MAX_HEALTH, 3);
         //SingletonRandom is Prof. Woolard's random number generator.
     }
 
     public void inputAllFields(){
         //Utilizes the set methods to pass input to the coinciding variables.
-        setStrength(Input.instance.getDouble((String.format("Input %s's Strength", this.name))));
-        setSpeed(Input.instance.getDouble((String.format("Input %s's Speed", this.name))));
-        setHealth(Input.instance.getDouble((String.format("Input %s's Health", this.name))));
+        System.out.println("You will now be asked to input the various fields of the chosen Actor");
+        setName(Input.instance.getString((String.format("Input %s's Name", this.name))));
+        setHealth(Input.instance.getDouble((String.format("Input %s's Health [This must be between %4.1f and %4.1f]", this.name, MAX_HEALTH, MIN_HEALTH))));
+        setSpeed(Input.instance.getDouble((String.format("Input %s's Speed [This must be between %4.1f and %4.1f]", this.name, MAX_SPEED, MIN_SPEED))));
+        setStrength(Input.instance.getDouble((String.format("Input %s's Strength [This must be between %4.1f and %4.1f]", this.name, MAX_STRENGTH, MIN_STRENGTH))));
         //This uses Prof. Woolard's Input parsing class to capture input.
     }
 
@@ -65,6 +71,9 @@ public class Actor {
     }
 
     //get and set methods are attributes of standard design pattern.
+    public String getName() {
+        return this.name;
+    }
 
     public double getHealth() { //getHealth returns the respective value of health to the object it's called by.
         return this.health;
@@ -81,6 +90,11 @@ public class Actor {
 
     //The values of speed are checked against the limits, and when they exceed them,
     // the values are set to the closest limit
+
+    public void setName(String name) {
+        this.name = String.format("%s%d", name, actorId);
+    }
+
     public void setSpeed(double speed) {
         if (speed > MAX_SPEED){
             System.out.printf("The entered Speed is greater than specified limits," +
