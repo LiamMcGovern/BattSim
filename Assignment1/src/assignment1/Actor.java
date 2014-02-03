@@ -37,27 +37,33 @@ public class Actor {
 
     //Actor instance variables
     private String name = "Actor"; //A string object initialized with the value of 'Actor'
-    private int actorId;
-    private double strength;
-    private double speed;
-    private double health;
+    private int actorId; //A int value that represents the value of actorSerialNumber upon instantiation.
+    private double strength; //Actor Speed....
+    private double speed; //Actor Strength....
+    private double health; //Actor Health...
 
     // Actor Constructor
     Actor() {
         actorSerialNumber++;//Increased upon each instantiation to correlate with the quantity of Actors created.
-        actorId = actorSerialNumber;
-        name = String.format("%s%d", name, actorId);
+        actorId = actorSerialNumber; //Make id = value of actorSerialNumber
+        name = String.format("%s%d", name, actorId); //Combining name with id
         //Actor instance variables are automagically instantiated with random values between the defined limits.
+
+        //-----------Attributes-------------
+        //Generate random numbers for each attribute field.
+        //SingletonRandom is Prof. Woolard's random number generator.
         strength = SingletonRandom.instance.getNormalDistribution(MIN_STRENGTH, MAX_STRENGTH, 3);
         speed = SingletonRandom.instance.getNormalDistribution(MIN_SPEED, MAX_SPEED, 3);
         health = SingletonRandom.instance.getNormalDistribution(MIN_HEALTH, MAX_HEALTH, 3);
-        //SingletonRandom is Prof. Woolard's random number generator.
+        //-----------Attributes-------------
     }
 
     public void inputAllFields(){
         //Utilizes the set methods to pass input to the coinciding variables.
+        //Each value is checked by the corresponding set methods.
         System.out.println("You will now be asked to input the various fields of the chosen Actor");
-        setName(Input.instance.getString((String.format("Input %s's Name", this.name))));
+        setName(Input.instance.getString((String.format("Input %s's Name", this.name)))); //change the name
+        //Change the attributes
         setHealth(Input.instance.getDouble((String.format("Input %s's Health [This must be between %4.1f and %4.1f]", this.name, MAX_HEALTH, MIN_HEALTH))));
         setSpeed(Input.instance.getDouble((String.format("Input %s's Speed [This must be between %4.1f and %4.1f]", this.name, MAX_SPEED, MIN_SPEED))));
         setStrength(Input.instance.getDouble((String.format("Input %s's Strength [This must be between %4.1f and %4.1f]", this.name, MAX_STRENGTH, MIN_STRENGTH))));
@@ -65,12 +71,14 @@ public class Actor {
     }
 
     @Override //This method overrides Java's inherited Object.toString method.
+    //toString, used either directly or in the absence of a toString call for the object.
     public String toString(){
         return String.format("Name: %-12s Health:%4.1f \t Speed:%4.1f \t Strength:%4.1f",
-                this.name, this.health, this.speed, this.strength );
+                this.name, this.health, this.speed, this.strength ); //formatting for presentation.
     }
 
-    //get and set methods are attributes of standard design pattern.
+    //----------get methods
+    //Standard getMethods, return the value of the calling objects fields.
     public String getName() {
         return this.name;
     }
@@ -86,14 +94,18 @@ public class Actor {
     public double getSpeed() {//getSpeed returns the respective value of health to the object it's called by.
         return this.speed;
     }
+    //----------get methods
 
-
-    //The values of speed are checked against the limits, and when they exceed them,
-    // the values are set to the closest limit
-
+    //----------set methods
     public void setName(String name) {
-        this.name = String.format("%s%d", name, actorId);
+        this.name = String.format("%s%d", name, actorId); //Set name and format it with the proper id number.
     }
+
+    //-----Attribute set methods----------
+
+    //Each double Attribute is checked against the corresponding predefined limit
+    //If it exceeds either limit the value is set to the nearest limit and the user is notified.
+    //Otherwise the selected field is set to the specified value.
 
     public void setSpeed(double speed) {
         if (speed > MAX_SPEED){
@@ -136,7 +148,7 @@ public class Actor {
             this.strength = strength;
         }
     }
-
+    //-----Attribute set methods----------
 
 
 }
