@@ -152,6 +152,4 @@ public class Actor {
         }
     }
     //-----Attribute set methods----------
-
-
 }
